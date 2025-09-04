@@ -1,0 +1,1 @@
+import{E as a,k as l}from"dist/c/c-J52F52RJ.js";import{a as t}from"dist/c/c-FP2E5KKM.js";function n(e,r={}){return window.requestIdleCallback?window.requestIdleCallback(e,r):l(e)}var d=t(()=>{"use strict";a()});export{n as a,d as b};

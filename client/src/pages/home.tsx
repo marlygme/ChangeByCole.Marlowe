@@ -7,13 +7,13 @@ export default function Home() {
     return (
       <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4">
         <div className="max-w-md text-center space-y-6">
-          <h1 className="text-2xl font-bold text-black mb-8" style={{ fontFamily: 'Outfit, sans-serif' }}>the boring stuff</h1>
+          <h1 className="text-2xl text-black mb-8" style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900 }}>the boring stuff</h1>
           
           <div className="space-y-4">
             <a 
               href="mailto:change@changebycole.com" 
               className="block text-black hover:text-gray-600 transition-colors"
-              style={{ fontFamily: 'Outfit, sans-serif' }}
+              style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900 }}
               data-testid="contact-email"
             >
               Privacy Policy
@@ -21,7 +21,7 @@ export default function Home() {
             <a 
               href="mailto:change@changebycole.com" 
               className="block text-black hover:text-gray-600 transition-colors"
-              style={{ fontFamily: 'Outfit, sans-serif' }}
+              style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900 }}
               data-testid="terms-link"
             >
               Terms of Service
@@ -31,7 +31,7 @@ export default function Home() {
           <button 
             onClick={() => setCurrentPage('main')}
             className="text-black hover:text-gray-600 transition-colors mt-8"
-            style={{ fontFamily: 'Outfit, sans-serif' }}
+            style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900 }}
             data-testid="back-button"
           >
             ← back
@@ -50,14 +50,14 @@ export default function Home() {
           <img 
             src="/change-logo.png" 
             alt="Change logo" 
-            className="w-48 h-auto mx-auto"
+            className="w-64 h-auto mx-auto"
             data-testid="main-logo"
           />
         </div>
 
         {/* TICKETS */}
         <div className="mb-6">
-          <h1 className="text-5xl font-bold text-black tracking-wider" style={{ fontFamily: 'Outfit, sans-serif' }}>
+          <h1 className="text-5xl text-black tracking-wider" style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900 }}>
             TICKETS
           </h1>
         </div>
@@ -66,8 +66,8 @@ export default function Home() {
         <div className="mb-6">
           <a 
             href="mailto:change@changebycole.com"
-            className="text-2xl text-black hover:text-gray-600 transition-colors font-medium"
-            style={{ fontFamily: 'Outfit, sans-serif' }}
+            className="text-2xl text-black hover:text-gray-600 transition-colors"
+            style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900 }}
             data-testid="contact-email"
           >
             contact
@@ -81,7 +81,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
             className="block text-base text-black hover:text-gray-600 transition-colors"
-            style={{ fontFamily: 'Outfit, sans-serif' }}
+            style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900 }}
             data-testid="instagram-link"
           >
             instagram
@@ -92,7 +92,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
             className="block text-base text-black hover:text-gray-600 transition-colors"
-            style={{ fontFamily: 'Outfit, sans-serif' }}
+            style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900 }}
             data-testid="youtube-link"
           >
             youtube
@@ -103,7 +103,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
             className="block text-base text-black hover:text-gray-600 transition-colors"
-            style={{ fontFamily: 'Outfit, sans-serif' }}
+            style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900 }}
             data-testid="tiktok-link"
           >
             tiktok
@@ -115,7 +115,7 @@ export default function Home() {
           <button 
             onClick={() => setCurrentPage('boring')}
             className="text-base text-black hover:text-gray-600 transition-colors"
-            style={{ fontFamily: 'Outfit, sans-serif' }}
+            style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900 }}
             data-testid="boring-stuff-link"
           >
             the boring stuff

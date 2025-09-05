@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimized 3D Icon Model</title>
+    <!-- SEO Meta Description: Optimized for search engines to understand the page content. -->
+    <meta name="description" content="A lightweight and fast 3D model generator that converts any 2D image into a voxel-based 3D object, rendered in real-time and optimized for performance.">
+    <style>
+        /* A clean, white-themed style for the page */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: white; 
+            color: #333;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        canvas {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+        }
+        /* Styling for the loading indicator */
+        #loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 1.5em;
+            border-radius: 8px;
+            background-color: rgba(240, 240, 240, 0.9);
+            color: #333333;
+            font-size: 1.2em;
+            display: none; /* Hidden by default */
+            z-index: 10;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loading indicator element -->
+    <div id="loader">Loading...</div>
+    <canvas id="c"></canvas>
+
+    <!-- 
+      Modern Three.js loading using ES Modules and an import map.
+    -->
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.155.0/examples/jsm/"
+        }
+    }
+    </script>
+
+    <script type="module">
+    // Import all necessary components from Three.js
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    // --- Core Scene Setup ---
+    const canvas = document.querySelector('#c');
+    const loaderElement = document.getElementById('loader');
+    const renderer = new THREE.WebGLRenderer({ antialias: true, canvas: canvas, alpha: false });
+
+    // PERFORMANCE OPTIMIZATION:
+    // Cap the device pixel ratio. A value of 1.5 is a good balance between sharpness
+    // and performance, preventing excessive work on very high-resolution screens.
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    const scene = new THREE.Scene();
+    // Set a permanent white background for the scene.
+    scene.background = new THREE.Color(0xffffff);
+
+    const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 2000);
+    camera.position.set(0, 0, 80);
+    
+    // --- Controls ---
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.minDistance = 20;
+    controls.maxDistance = 200;
+    controls.maxPolarAngle = Math.PI;
+
+    // --- Main Application Logic ---
+    let currentModelGroup = null;
+
+    function loadAndProcessImage(url) {
+        if (currentModelGroup) {
+            scene.remove(currentModelGroup);
+            // Clean up old geometry and materials to free up memory
+            currentModelGroup.traverse(child => {
+                if (child.isMesh) {
+                    child.geometry.dispose();
+                    child.material.dispose();
+                }
+            });
+        }
+
+        loaderElement.style.display = 'block';
+        loaderElement.innerHTML = 'Loading Image...';
+
+        const imageObject = new Image();
+        imageObject.crossOrigin = "Anonymous";
+
+        imageObject.onload = () => {
+            loaderElement.innerHTML = 'Generating 3D Model...';
+            // Use a short timeout to allow the "Generating..." message to render before the heavy work starts.
+            setTimeout(() => {
+                createModelFromImage(imageObject);
+            }, 50);
+        };
+        imageObject.onerror = () => {
+            loaderElement.textContent = 'Error: Could not load image.';
+        };
+        imageObject.src = url;
+    }
+    
+    async function createModelFromImage(img) {
+        currentModelGroup = new THREE.Group();
+        
+        const tempCanvas = document.createElement('canvas');
+        const tempCtx = tempCanvas.getContext('2d', { willReadFrequently: true });
+        
+        // PERFORMANCE OPTIMIZATION:
+        // The image processing dimension has been drastically reduced from 1024 to 128.
+        // This is the most important change. It means we create far fewer 3D objects (voxels),
+        // which makes the whole experience much faster and smoother.
+        const processDim = 128; 
+        const aspectRatio = img.naturalWidth / img.naturalHeight;
+        const imgProcessWidth = (aspectRatio >= 1) ? processDim : Math.round(processDim * aspectRatio);
+        const imgProcessHeight = (aspectRatio < 1) ? processDim : Math.round(processDim / aspectRatio);
+
+        tempCanvas.width = imgProcessWidth;
+        tempCanvas.height = imgProcessHeight;
+        tempCtx.drawImage(img, 0, 0, imgProcessWidth, imgProcessHeight);
+        const imageData = tempCtx.getImageData(0, 0, imgProcessWidth, imgProcessHeight).data;
+
+        const alphaThreshold = 128;
+        const voxelSize = 0.25;
+        // PERFORMANCE OPTIMIZATION: Reduced the depth from 5 to 3 layers.
+        // This also helps by creating fewer objects.
+        const voxelDepthLayers = 3;
+        
+        const instances = [];
+        // This loop checks each pixel of the downsized image.
+        for (let y = 0; y < imgProcessHeight; y++) {
+            for (let x = 0; x < imgProcessWidth; x++) {
+                const i = (y * imgProcessWidth + x) * 4;
+                const r = imageData[i], g = imageData[i+1], b = imageData[i+2], a = imageData[i+3];
+
+                // If the pixel is mostly transparent, skip it.
+                if (a < alphaThreshold) continue;
+                
+                // For each visible pixel, create the voxels for the depth layers.
+                for (let l = 0; l < voxelDepthLayers; l++) {
+                    instances.push({
+                        x: (x - imgProcessWidth / 2) * voxelSize,
+                        y: -(y - imgProcessHeight / 2) * voxelSize,
+                        z: (l - (voxelDepthLayers - 1) / 2) * voxelSize,
+                        color: new THREE.Color(r/255, g/255, b/255)
+                    });
+                }
+            }
+        }
+        
+        // Using an InstancedMesh is very efficient for drawing many copies of the same object.
+        const voxelGeometry = new THREE.BoxGeometry(voxelSize, voxelSize, voxelSize);
+        const voxelMaterial = new THREE.MeshBasicMaterial({ vertexColors: true });
+        
+        const instancedMesh = new THREE.InstancedMesh(voxelGeometry, voxelMaterial, instances.length);
+        
+        const dummy = new THREE.Object3D();
+        for (let i = 0; i < instances.length; i++) {
+            const { x, y, z, color } = instances[i];
+            dummy.position.set(x, y, z);
+            dummy.updateMatrix();
+            instancedMesh.setMatrixAt(i, dummy.matrix);
+            instancedMesh.setColorAt(i, color);
+        }
+        instancedMesh.instanceMatrix.needsUpdate = true;
+        instancedMesh.instanceColor.needsUpdate = true;
+        
+        currentModelGroup.add(instancedMesh);
+
+        // Scale the final model to fit nicely in the view.
+        const scale = 100 / (Math.max(imgProcessWidth, imgProcessHeight) * voxelSize);
+        currentModelGroup.scale.set(scale, scale, scale);
+        scene.add(currentModelGroup);
+
+        loaderElement.style.display = 'none';
+    }
+
+
+    // --- Animation Loop & Event Listeners ---
+    function animate() {
+        requestAnimationFrame(animate);
+
+        controls.update();
+
+        // Gently rotate the model automatically.
+        if (currentModelGroup) {
+            currentModelGroup.rotation.y += 0.001;
+        }
+        
+        renderer.render(scene, camera);
+    }
+
+    function onResize() {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+    }
+    window.addEventListener('resize', onResize);
+
+    // --- Initial Load ---
+    loadAndProcessImage("https://i.imgur.com/W27A3bE.png");
+    animate();
+
+    </script>
+</body>
+</html>

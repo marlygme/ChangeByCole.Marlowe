@@ -133,7 +133,7 @@ export default function Home() {
             <img 
               src="/Image-8a292774-f62d-40d6-8714-76f49fcc647c.gif" 
               alt="marlyg.me logo" 
-              className="w-12 h-auto mx-auto opacity-70 hover:opacity-100 transition-opacity"
+              className="w-24 h-auto mx-auto opacity-70 hover:opacity-100 transition-opacity"
               data-testid="footer-logo"
             />
           </a>

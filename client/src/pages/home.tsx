@@ -10,22 +10,22 @@ export default function Home() {
           <h1 className="text-2xl text-black mb-8" style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900 }}>the boring stuff</h1>
           
           <div className="space-y-4">
-            <a 
-              href="mailto:change@changebycole.com" 
+            <button 
+              onClick={() => setCurrentPage('privacy')}
               className="block text-black hover:text-gray-600 transition-colors"
               style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900 }}
-              data-testid="contact-email"
+              data-testid="privacy-link"
             >
               Privacy Policy
-            </a>
-            <a 
-              href="mailto:change@changebycole.com" 
+            </button>
+            <button 
+              onClick={() => setCurrentPage('terms')}
               className="block text-black hover:text-gray-600 transition-colors"
               style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900 }}
               data-testid="terms-link"
             >
               Terms of Service
-            </a>
+            </button>
           </div>
 
           <button 
@@ -36,6 +36,142 @@ export default function Home() {
           >
             ← back
           </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (currentPage === 'privacy') {
+    return (
+      <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4">
+        <div className="max-w-2xl text-center space-y-8">
+          <h1 className="text-3xl text-black mb-8" style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900 }}>
+            Privacy Policy
+          </h1>
+          
+          <div className="text-left space-y-6">
+            <div style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900 }}>
+              <h2 className="text-xl text-black mb-4">Our website is hosted on Readymag.</h2>
+              
+              <div className="text-base text-black space-y-4">
+                <p>
+                  We are committed to protecting your privacy and ensuring the security of your personal information. 
+                  This privacy policy explains how we collect, use, and protect your information when you visit our website.
+                </p>
+                
+                <h3 className="text-lg font-bold">Information We Collect</h3>
+                <p>
+                  We may collect information you provide directly to us, such as when you contact us via email or 
+                  through our contact forms. This may include your name, email address, and any other information 
+                  you choose to provide.
+                </p>
+                
+                <h3 className="text-lg font-bold">How We Use Your Information</h3>
+                <p>
+                  We use the information we collect to respond to your inquiries, provide services, and communicate 
+                  with you about our work and services.
+                </p>
+                
+                <h3 className="text-lg font-bold">Information Sharing</h3>
+                <p>
+                  We do not sell, trade, or otherwise transfer your personal information to third parties without 
+                  your consent, except as described in this policy.
+                </p>
+                
+                <h3 className="text-lg font-bold">Contact Us</h3>
+                <p>
+                  If you have questions about this privacy policy, please contact us at change@changebycole.com.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-8">
+            <button 
+              onClick={() => setCurrentPage('boring')}
+              className="text-base text-black hover:text-gray-600 transition-colors"
+              style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900 }}
+              data-testid="back-button"
+            >
+              ← back
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (currentPage === 'terms') {
+    return (
+      <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4">
+        <div className="max-w-2xl text-center space-y-8">
+          <h1 className="text-3xl text-black mb-8" style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900 }}>
+            Terms of Service
+          </h1>
+          
+          <div className="text-left space-y-6">
+            <div style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900 }}>
+              <div className="text-base text-black space-y-4">
+                <h3 className="text-lg font-bold">1. Acceptance of Terms</h3>
+                <p>
+                  By accessing and using this website, you accept and agree to be bound by the terms and provision 
+                  of this agreement.
+                </p>
+                
+                <h3 className="text-lg font-bold">2. Services</h3>
+                <p>
+                  Change by Cole provides video production services including music videos, live events, and brand 
+                  content creation based in Melbourne, Australia.
+                </p>
+                
+                <h3 className="text-lg font-bold">3. Intellectual Property</h3>
+                <p>
+                  All content on this website, including but not limited to text, graphics, logos, images, and videos, 
+                  is the property of Change by Cole and is protected by copyright and other intellectual property laws.
+                </p>
+                
+                <h3 className="text-lg font-bold">4. User Conduct</h3>
+                <p>
+                  You agree not to use the website for any unlawful purpose or in any way that could damage, disable, 
+                  overburden, or impair the website.
+                </p>
+                
+                <h3 className="text-lg font-bold">5. Disclaimer</h3>
+                <p>
+                  The information on this website is provided on an "as is" basis. Change by Cole makes no 
+                  representations or warranties regarding the accuracy or completeness of the information provided.
+                </p>
+                
+                <h3 className="text-lg font-bold">6. Limitation of Liability</h3>
+                <p>
+                  Change by Cole shall not be liable for any indirect, incidental, special, consequential, or punitive 
+                  damages arising from your use of the website.
+                </p>
+                
+                <h3 className="text-lg font-bold">7. Changes to Terms</h3>
+                <p>
+                  We reserve the right to modify these terms at any time. Your continued use of the website after 
+                  changes constitutes acceptance of the new terms.
+                </p>
+                
+                <h3 className="text-lg font-bold">8. Contact Information</h3>
+                <p>
+                  If you have questions about these terms, please contact us at change@changebycole.com.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-8">
+            <button 
+              onClick={() => setCurrentPage('boring')}
+              className="text-base text-black hover:text-gray-600 transition-colors"
+              style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900 }}
+              data-testid="back-button"
+            >
+              ← back
+            </button>
+          </div>
         </div>
       </div>
     );

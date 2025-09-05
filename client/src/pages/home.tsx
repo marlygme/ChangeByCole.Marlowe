@@ -7,12 +7,13 @@ export default function Home() {
     return (
       <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4">
         <div className="max-w-md text-center space-y-6">
-          <h1 className="text-2xl font-bold text-black mb-8">the boring stuff</h1>
+          <h1 className="text-2xl font-bold text-black mb-8" style={{ fontFamily: 'Outfit, sans-serif' }}>the boring stuff</h1>
           
           <div className="space-y-4">
             <a 
               href="mailto:change@changebycole.com" 
               className="block text-black hover:text-gray-600 transition-colors"
+              style={{ fontFamily: 'Outfit, sans-serif' }}
               data-testid="contact-email"
             >
               Privacy Policy
@@ -20,6 +21,7 @@ export default function Home() {
             <a 
               href="mailto:change@changebycole.com" 
               className="block text-black hover:text-gray-600 transition-colors"
+              style={{ fontFamily: 'Outfit, sans-serif' }}
               data-testid="terms-link"
             >
               Terms of Service
@@ -29,6 +31,7 @@ export default function Home() {
           <button 
             onClick={() => setCurrentPage('main')}
             className="text-black hover:text-gray-600 transition-colors mt-8"
+            style={{ fontFamily: 'Outfit, sans-serif' }}
             data-testid="back-button"
           >
             ← back
@@ -42,19 +45,18 @@ export default function Home() {
     <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4">
       <div className="text-center space-y-6 max-w-sm">
         
-        {/* Main Logo/Branding - Using the GIF animation from original */}
+        {/* Main Logo/Branding - Change Text */}
         <div className="mb-8">
-          <img 
-            src="/Image-86f58a28-ea6e-474d-a4e6-e8b7f1f2a98a.gif" 
-            alt="Change logo" 
-            className="w-32 h-auto mx-auto"
-            data-testid="main-logo"
-          />
+          <div className="w-48 h-48 mx-auto flex items-center justify-center">
+            <h1 className="text-4xl font-bold text-black" style={{ fontFamily: 'Outfit, sans-serif', letterSpacing: '0.1em' }}>
+              CHANGE
+            </h1>
+          </div>
         </div>
 
         {/* TICKETS */}
         <div className="mb-6">
-          <h1 className="text-3xl font-bold text-black tracking-wider">
+          <h1 className="text-3xl font-bold text-black tracking-wider" style={{ fontFamily: 'Outfit, sans-serif' }}>
             TICKETS
           </h1>
         </div>
@@ -64,6 +66,7 @@ export default function Home() {
           <a 
             href="mailto:change@changebycole.com"
             className="text-xl text-black hover:text-gray-600 transition-colors font-medium"
+            style={{ fontFamily: 'Outfit, sans-serif' }}
             data-testid="contact-email"
           >
             contact
@@ -77,6 +80,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
             className="block text-lg text-black hover:text-gray-600 transition-colors"
+            style={{ fontFamily: 'Outfit, sans-serif' }}
             data-testid="instagram-link"
           >
             instagram
@@ -87,6 +91,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
             className="block text-lg text-black hover:text-gray-600 transition-colors"
+            style={{ fontFamily: 'Outfit, sans-serif' }}
             data-testid="youtube-link"
           >
             youtube
@@ -97,6 +102,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
             className="block text-lg text-black hover:text-gray-600 transition-colors"
+            style={{ fontFamily: 'Outfit, sans-serif' }}
             data-testid="tiktok-link"
           >
             tiktok
@@ -108,6 +114,7 @@ export default function Home() {
           <button 
             onClick={() => setCurrentPage('boring')}
             className="text-lg text-black hover:text-gray-600 transition-colors"
+            style={{ fontFamily: 'Outfit, sans-serif' }}
             data-testid="boring-stuff-link"
           >
             the boring stuff

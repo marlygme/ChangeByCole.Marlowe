@@ -51,36 +51,47 @@ export default function Home() {
           
           <div className="text-left space-y-6">
             <div style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 900 }}>
-              <h2 className="text-xl text-black mb-4">Our website is hosted on Readymag.</h2>
+              <h2 className="text-xl text-black mb-4">Our website is hosted on Cloudflare Pages.</h2>
               
               <div className="text-base text-black space-y-4">
                 <p>
-                  We are committed to protecting your privacy and ensuring the security of your personal information. 
-                  This privacy policy explains how we collect, use, and protect your information when you visit our website.
+                  Change by Cole is committed to protecting your privacy and ensuring the security of your personal information. 
+                  This privacy policy explains how we collect, use, and protect your information when you visit our website, 
+                  which is hosted on Cloudflare Pages for optimal performance and security.
                 </p>
                 
                 <h3 className="text-lg font-bold">Information We Collect</h3>
                 <p>
-                  We may collect information you provide directly to us, such as when you contact us via email or 
-                  through our contact forms. This may include your name, email address, and any other information 
-                  you choose to provide.
+                  We collect minimal information to provide our services effectively. This may include information you 
+                  provide directly when contacting us via email, such as your name, email address, project details, 
+                  and any other information you choose to share with us about your video production needs.
                 </p>
                 
                 <h3 className="text-lg font-bold">How We Use Your Information</h3>
                 <p>
-                  We use the information we collect to respond to your inquiries, provide services, and communicate 
-                  with you about our work and services.
+                  We use the information collected solely to respond to your inquiries, provide video production 
+                  services, communicate about projects, and deliver the creative content you've requested. We do not 
+                  use your information for marketing purposes without explicit consent.
+                </p>
+                
+                <h3 className="text-lg font-bold">Data Security & Hosting</h3>
+                <p>
+                  Your data is protected through Cloudflare's enterprise-grade security infrastructure. We implement 
+                  appropriate security measures to protect against unauthorized access, alteration, disclosure, or 
+                  destruction of your personal information.
                 </p>
                 
                 <h3 className="text-lg font-bold">Information Sharing</h3>
                 <p>
-                  We do not sell, trade, or otherwise transfer your personal information to third parties without 
-                  your consent, except as described in this policy.
+                  We do not sell, trade, rent, or otherwise transfer your personal information to third parties. 
+                  Your information is kept confidential and is only used to provide the video production services 
+                  you've requested.
                 </p>
                 
                 <h3 className="text-lg font-bold">Contact Us</h3>
                 <p>
-                  If you have questions about this privacy policy, please contact us at change@changebycole.com.
+                  If you have any questions about this privacy policy or how we handle your information, 
+                  please contact us at change@changebycole.com.
                 </p>
               </div>
             </div>

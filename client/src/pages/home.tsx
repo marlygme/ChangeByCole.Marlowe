@@ -46,7 +46,7 @@ export default function Home() {
       <div className="text-center space-y-6 max-w-sm">
         
         {/* Main Logo/Branding - Change Logo */}
-        <div className="mb-8">
+        <div className="mb-6">
           <img 
             src="/change-logo.png" 
             alt="Change logo" 
@@ -124,12 +124,19 @@ export default function Home() {
 
         {/* Footer logo */}
         <div className="mt-12">
-          <img 
-            src="/Image-8a292774-f62d-40d6-8714-76f49fcc647c.gif" 
-            alt="Cole logo" 
-            className="w-8 h-auto mx-auto opacity-70"
-            data-testid="footer-logo"
-          />
+          <a 
+            href="https://marlyg.me"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-testid="footer-logo-link"
+          >
+            <img 
+              src="/Image-8a292774-f62d-40d6-8714-76f49fcc647c.gif" 
+              alt="marlyg.me logo" 
+              className="w-12 h-auto mx-auto opacity-70 hover:opacity-100 transition-opacity"
+              data-testid="footer-logo"
+            />
+          </a>
         </div>
       </div>
     </div>

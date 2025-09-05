@@ -45,18 +45,19 @@ export default function Home() {
     <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4">
       <div className="text-center space-y-6 max-w-sm">
         
-        {/* Main Logo/Branding - Change Text */}
+        {/* Main Logo/Branding - Change Logo */}
         <div className="mb-8">
-          <div className="w-48 h-48 mx-auto flex items-center justify-center">
-            <h1 className="text-4xl font-bold text-black" style={{ fontFamily: 'Outfit, sans-serif', letterSpacing: '0.1em' }}>
-              CHANGE
-            </h1>
-          </div>
+          <img 
+            src="/change-logo.png" 
+            alt="Change logo" 
+            className="w-48 h-auto mx-auto"
+            data-testid="main-logo"
+          />
         </div>
 
         {/* TICKETS */}
         <div className="mb-6">
-          <h1 className="text-3xl font-bold text-black tracking-wider" style={{ fontFamily: 'Outfit, sans-serif' }}>
+          <h1 className="text-5xl font-bold text-black tracking-wider" style={{ fontFamily: 'Outfit, sans-serif' }}>
             TICKETS
           </h1>
         </div>
@@ -65,7 +66,7 @@ export default function Home() {
         <div className="mb-6">
           <a 
             href="mailto:change@changebycole.com"
-            className="text-xl text-black hover:text-gray-600 transition-colors font-medium"
+            className="text-2xl text-black hover:text-gray-600 transition-colors font-medium"
             style={{ fontFamily: 'Outfit, sans-serif' }}
             data-testid="contact-email"
           >
@@ -79,7 +80,7 @@ export default function Home() {
             href="https://instagram.com/changebycole"
             target="_blank"
             rel="noopener noreferrer"
-            className="block text-lg text-black hover:text-gray-600 transition-colors"
+            className="block text-base text-black hover:text-gray-600 transition-colors"
             style={{ fontFamily: 'Outfit, sans-serif' }}
             data-testid="instagram-link"
           >
@@ -90,7 +91,7 @@ export default function Home() {
             href="https://youtube.com/changebycole"
             target="_blank"
             rel="noopener noreferrer"
-            className="block text-lg text-black hover:text-gray-600 transition-colors"
+            className="block text-base text-black hover:text-gray-600 transition-colors"
             style={{ fontFamily: 'Outfit, sans-serif' }}
             data-testid="youtube-link"
           >
@@ -101,7 +102,7 @@ export default function Home() {
             href="https://tiktok.com/@changebycole"
             target="_blank"
             rel="noopener noreferrer"
-            className="block text-lg text-black hover:text-gray-600 transition-colors"
+            className="block text-base text-black hover:text-gray-600 transition-colors"
             style={{ fontFamily: 'Outfit, sans-serif' }}
             data-testid="tiktok-link"
           >
@@ -113,7 +114,7 @@ export default function Home() {
         <div className="mt-8">
           <button 
             onClick={() => setCurrentPage('boring')}
-            className="text-lg text-black hover:text-gray-600 transition-colors"
+            className="text-base text-black hover:text-gray-600 transition-colors"
             style={{ fontFamily: 'Outfit, sans-serif' }}
             data-testid="boring-stuff-link"
           >
